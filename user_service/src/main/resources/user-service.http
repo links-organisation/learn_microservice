@@ -1,0 +1,71 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST http://localhost:8081/api/v1/auth/register
+Content-Type: application/json
+
+{
+	"firstName": "Bruno",
+	"lastName": "NDUWARUGIRA",
+	"email": "nduwarugirabruno@gmail.com",
+	"password": "123Link's",
+	"role": "ADMIN_SUDO"
+}
+
+###
+POST localhost:8081/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+	"email": "nduwarugirabruno@gmail.com",
+	"password": "123Link's"
+}
+
+###
+POST http://localhost:8081/api/v1/auth/register
+Content-Type: application/json
+
+{
+	"firstName": "Link's",
+	"lastName": "Des Sheikhas",
+	"email": "sheikhaslinks@gmail.com",
+	"password": "123Link's",
+	"role": "ADMIN"
+}
+
+###
+POST localhost:8081/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+	"email": "sheikhaslinks@gmail.com",
+	"password": "123Link's"
+}
+
+###
+@admin_sudo_token = eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJBRE1JTl9TVURPIl0sInN1YiI6Im5kdXdhcnVnaXJhYnJ1bm9AZ21haWwuY29tIiwiaWF0IjoxNzI1NzA2MTE5LCJleHAiOjE3MjU3OTI1MTl9.gb5s3MijZGX9NYqo7Gf5ZSOV7ibHL-dfcb7or73f7IO0AlT7o6OB1v3dmgj5tUUD0tI0pdK7a5lfjSAT89Gl1A
+
+@admin_token = eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJBRE1JTiJdLCJzdWIiOiJzaGVpa2hhc2xpbmtzQGdtYWlsLmNvbSIsImlhdCI6MTcyNTcwNjEzNSwiZXhwIjoxNzI1NzkyNTM1fQ.eBtZ46XF2EXA4HD-MUdOTpL9XVQqR4uP3E2NffHmbhp8WYCXTFQIhT8Y86SgMpnCbH3pmFHEVsds6Ixx4oCwKA
+
+###
+GET localhost:8081/api/v1/demo
+Authorization: Bearer {{admin_sudo_token}}
+Accept: application/json
+
+###
+GET localhost:8081/api/v1/user/get/all
+Authorization: Bearer {{admin_sudo_token}}
+Accept: application/json
+
+###
+@email = nduwarugirabruno@gmail.com
+GET localhost:8082/api/v1/shop/get/email/{{email}}
+Authorization: Bearer {{admin_token}}
+Accept: application/json
+
+###
+GET localhost:8082/api/v1/shop/get/all
+Authorization: Bearer {{admin_sudo_token}}
+Accept: application/json
